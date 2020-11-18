@@ -1,7 +1,8 @@
 import React from 'react'
-// import { makeStyles } from '@material-ui/core/styles'
-import List from '@material-ui/core/List'
-import Divider from '@material-ui/core/Divider'
+import { makeStyles } from '@material-ui/core/styles'
+// import List from '@material-ui/core/List'
+import Grid from '@material-ui/core/Grid'
+// import Divider from '@material-ui/core/Divider'
 // import ArticleItem from './ArticleItem'
 import ArticleCard from './ArticleCard'
 // import styles from '../theme/index.css'
@@ -15,18 +16,21 @@ import ArticleCard from './ArticleCard'
 //   { title: 'article', byline: 'this is the byline of the article sup mane', section: 'science' }
 // ]
 
-const ArticleList = ({articles}) => {
-  // const classes = useStyles()
+const useStyles = makeStyles({
+  root: {
+    // clear: 'both',
+    marginTop: '3rem',
+    // paddingTop: '3rem',
+  }
+})
+
+const ArticleList = ({ articles }) => {
+  const classes = useStyles()
 
   return (
-    <List component='div' aria-label='articles' style={{ width: '100%' }}>
-      {articles.map((article) => (
-        <>
-          <ArticleCard article={article} key={article.uri} />
-          <Divider />
-        </>
-      ))}
-    </List>
+    <Grid container className={classes.root} direction='row' alignItems='left' spacing={2}>
+      {articles.map((article) => <ArticleCard article={article} key={article.uri} spacing={3} />)}
+    </Grid>
   )
 }
 

@@ -4,7 +4,8 @@ import React from 'react'
 import './App.css'
 import Logo from './components/Logo'
 import NavBar from './components/NavBar'
-import ArticleList from './components/ArticleList'
+// import ArticleList from './components/ArticleList'
+import ArticleGridList from './components/ArticleGridList'
 
 // import moduleName from '@material-ui'
 import data from './data/apiData.json'
@@ -29,10 +30,10 @@ const App = () => {
 
   return (
     <div className='App'>
+      <NavBar siteTitle='Thrilling Articles' />
       <Container maxWidth='lg'>
-        <NavBar siteTitle='Thrilling Articles' />
-        <Logo style={logoStyle} />
-        <ArticleList articles={data.results} />
+        {/* <Logo style={logoStyle} /> */}
+        <ArticleGridList articles={data.results} />
       </Container>
     </div>
   )
