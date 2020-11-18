@@ -65,11 +65,12 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const NavBar = ({ siteTitle, keyword }) => {
+const NavBar = ({ siteTitle, keyword, setKeyword }) => {
   const classes = useStyles()
 
   const handleKeywordChange = (e) => {
-    keyword = e.target.value
+    e.preventDefault()
+    setKeyword(e.target.value)
   }
 
   return (
@@ -93,7 +94,7 @@ const NavBar = ({ siteTitle, keyword }) => {
                 input: classes.inputInput
               }}
               inputProps={{ 'aria-label': 'search' }}
-              onChange={e => handleKeywordChange}
+              onChange={e => handleKeywordChange(e)}
               value={keyword}
             />
           </div>

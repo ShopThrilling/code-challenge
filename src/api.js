@@ -7,6 +7,7 @@ export const params = {
 }
 
 // NOTE: allows for additional parameters
+// TODO: fill out api request
 export const get = async(url) => {
   url += '?'
   Object.entries(params).map(([key, val]) => (url += `&${key}=${val}`))
