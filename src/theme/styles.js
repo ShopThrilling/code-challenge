@@ -1,4 +1,4 @@
-import red from '@material-ui/core/colors/red'
+// import red from '@material-ui/core/colors/red'
 
 export const sideMenuWidth = 320
 
@@ -9,90 +9,84 @@ export const styles = (theme) => ({
     display: 'flex',
     fontFamily: 'Inconsolata, Helvetica'
   },
-  sideMenu: {
-    [theme.breakpoints.up('sm')]: {
-      width: sideMenuWidth,
-      flexShrink: 0
-    },
-    marginTop: 0,
-    marginBottom: 0,
-    paddingTop: 0,
-    paddingBottom: 0
+  navbar: {
+    backgroundColor: '#ddd'
   },
-  sideMenuTitle: {
+  articleCardRoot: {
+    maxWidth: 345,
+    height: '100%',
+    minHeight: '100%',
+    maxHeight: '100%',
     display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'stretch'
+  },
+  articleMedia: {
+    height: 140
+  },
+  articleCard: {
+    justifySelf: 'flex-start',
+    // margin: 'auto 0',
+    // textAlign: 'center',
+    height: 210,
+    alignItems: 'stretch'
+    // transform: translateX(0, 50%),
+  },
+  articleCardHeader: {
+    fontWeight: 'bold',
+    textTransform: 'uppercase',
+    fontStyle: 'small-caps',
+    fontFamily: 'sans-serif',
+    color: '#000',
+    textAlign: 'left',
+    justify: 'left',
+    // fontFamily: 'small-caps',
+    fontSize: '0.6em',
+    '& span': {
+      color: '#000',
+      fontWeight: 'bold',
+      fontSize: '0.8rem'
+    }
+  },
+  articleTitle: {
+    fontStyle: 'italic',
+    fontFamily: 'serif'
+  },
+  articleByline: {
+    fontFamily: 'serif',
+    fontSize: '1rem',
+    color: 'lightgray',
+    justify: 'right',
+    textAlign: 'left',
+    flexShrink: 0
+  },
+  articleAbstract: {
+    textAlign: 'justify'
+  },
+  articleContent: {
+    flex: '1 0 auto',
+    alignItems: 'stretch'
+  },
+  articleCardContent: {
     flexGrow: 1,
-    justifyContent: 'flex-start',
-    aligntItems: 'flex-start',
-    padding: theme.spacing(2),
+    alignItems: 'stretch'
+  },
+  articlePlaceholderText: {
+    fontStyle: 'italic',
+    fontFamily: 'serif',
+    textAlign: 'center',
+    padding: '2rem',
+    margin: 'auto',
+    top: '50%',
+    backgroundColor: '#efefef',
     height: '100%'
   },
-  sideMenuContent: {
-    maxWidth: sideMenuWidth,
-    padding: theme.spacing(2)
-  },
-  appBar: {
-    [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${sideMenuWidth}px)`,
-      marginLeft: sideMenuWidth
-    },
-    backgroundColor: '#227d4d'
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none'
+  articleActions: {
+    bottom: 0,
+    flexShrink: 0,
+    '& button': {
+      marginTop: 0,
+      marginBottom: 0,
     }
-  },
-  menuRight: {
-    marginRight: theme.spacing(2)
-  },
-  // necessary for content to be below app bar
-  toolbar: theme.mixins.toolbar,
-  sideMenuPaper: {
-    width: sideMenuWidth
-  },
-  content: {
-    flexGrow: 1,
-    padding: 0,
-    margin: 0
-  },
-  map: {
-    margin: 0,
-    padding: 0,
-    [theme.breakpoints.only('xs')]: {
-      width: '100%',
-      position: 'relative',
-      maxHeight: `calc(100% - ${theme.mixins.toolbar.minHeight}px)`
-    },
-    [theme.breakpoints.up('sm')]: {
-      position: 'absolute',
-      maxWidth: `calc(100% - ${sideMenuWidth}px)`,
-      maxHeight: `calc(100% - ${theme.mixins.toolbar.minHeight + 8}px)`
-    }
-  },
-  mapContainer: {
-    margin: 0,
-    padding: 0,
-    maxHeight: `calc(100% - ${theme.mixins.toolbar.minHeight + 8}px)})`
-  },
-  infoWindow: {
-    padding: theme.spacing(2),
-    margin: theme.spacing(2)
-  },
-  heading: {
-    fontWeight: 600
-  },
-  subheading: {
-    fontSize: '1.2rem',
-    fontWeight: 400
-  },
-  overlineText: {
-    display: 'block',
-    lineHeight: '1rem',
-    paddingTop: '4px'
-  },
-  errorSnackbar: {
-    backgroundColor: red[600]
   }
 })

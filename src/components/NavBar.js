@@ -63,12 +63,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const NavBar = ({ siteTitle }) => {
+
+
+const NavBar = ({ siteTitle, keyword }) => {
   const classes = useStyles()
+
+  const handleKeywordChange = (e) => {
+    keyword = e.target.value
+  }
 
   return (
     <div className={classes.root}>
-      <AppBar position='static'>
+      <AppBar position='static' style={{ backgroundColor: '#ddd' }}>
         <Toolbar>
           <IconButton edge='start' className={classes.menuButton} color='inherit' aria-label='open drawer'>
             <MenuIcon />
@@ -87,6 +93,8 @@ const NavBar = ({ siteTitle }) => {
                 input: classes.inputInput
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={e => handleKeywordChange}
+              value={keyword}
             />
           </div>
         </Toolbar>

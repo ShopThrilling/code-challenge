@@ -2,38 +2,30 @@ import Container from '@material-ui/core/Container'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import React from 'react'
 import './App.css'
-import Logo from './components/Logo'
-import NavBar from './components/NavBar'
-// import ArticleList from './components/ArticleList'
 import ArticleGridList from './components/ArticleGridList'
-
-// import moduleName from '@material-ui'
+import NavBar from './components/NavBar'
 import data from './data/apiData.json'
-
 import { styles } from './theme/styles'
 
 const useStyles = makeStyles(styles)
 
-const logoStyle = {
-  top: 0,
-  marginTop: 0,
-  display: 'flex',
-  alignSelf: 'center',
-  width: '100%'
+const searchKeyword = (keyword) => {
+  // TODO: do filtering stuff here
 }
 
 const App = () => {
   const classes = useStyles()
 
-  console.log(classes)
-  console.log(data.results)
+  // initialize keyword as empty string
+  let keyword = ''
 
   return (
     <div className='App'>
-      <NavBar siteTitle='Thrilling Articles' />
+      <NavBar siteTitle='Thrilling Articles' keyword={keyword} className={classes.navbar} />
       <Container maxWidth='lg'>
-        {/* <Logo style={logoStyle} /> */}
-        <ArticleGridList articles={data.results} />
+        {/* TODO: Articles are .filter(ed) based on matching keyword
+            i.e. only return values that match what's in the search box */}
+        <ArticleGridList articles={data.results} keyword={keyword} />
       </Container>
     </div>
   )
