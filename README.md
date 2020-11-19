@@ -3,12 +3,32 @@
 
 **Designed by [joel hawkins](https://joel.fm), November 2020**
 
+
+### Installation guide
+
+Clone the repository to your local machine, ensure you have a recent version of Node and NPM (tested with Node v14.x) as well as Yarn, then simply run
+```
+yarn
+yarn start
+```
+Then visit `http://localhost:3000` in your favorite browser.
+
+### Known bugs
+
+The only bug I know of occurs when hovering a card; the hover overlay does not extend the full length of the card. Despite my efforts, I could not figure a way to make it so and I will continue to lose sleep. This I will take to my grave.
+
+### Possible extensions
+
+* Implement UI / unit tests (didn't for lack of time)
+* Design logo
+* Share button actually shares content on some platform
+* Tweak API call / implement pagination (so one could scroll a longer history of articles)
+
 ### Technologies
 
 * React.js
 * Node.js
 * Material UI
-*
 
 ## Initial Project Outline
 Authored by Brad Mallow
