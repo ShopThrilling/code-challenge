@@ -14,7 +14,7 @@ const ArticleGridList = ({ articles }) => {
   const classes = useStyles()
 
   return (
-    <Grid container className={classes.root} direction='row' alignItems='left' spacing={2}>
+    <Grid container className={classes.root} direction='row' alignItems='stretch' spacing={2}>
       {articles && articles.map((article) => <ArticleCard article={article} key={article.uri} spacing={3} />)}
     </Grid>
   )
