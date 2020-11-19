@@ -1,16 +1,57 @@
-// import red from '@material-ui/core/colors/red'
+import red from '@material-ui/core/colors/red'
 
-export const sideMenuWidth = 320
+import GastromondWoff2 from './fonts/gastromond-regular.woff2'
+import ProximaNovaWoff2 from './fonts/proxima-nova.woff2'
+import { createMuiTheme } from '@material-ui/core'
+
+const gastromond = {
+  fontFamily: 'Gastromond',
+  fontStyle: 'normal',
+  fontDisplay: 'swap',
+  fontWeight: '400',
+  src: `
+  local('Gastromond'),
+  local('Gastromond-Regular'),
+  url(${GastromondWoff2}) format('woff2')`,
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+}
+
+const proxima = {
+  fontFamily: 'Proxima-Nova',
+  fontStyle: 'normal',
+  fontDisplay: 'swap',
+  fontWeight: '400',
+  src: `
+  local('Proxima'),
+  local('Proxima-Nova'),
+  url(${ProximaNovaWoff2}) format('woff2')`,
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+}
+
+export const theme = createMuiTheme({
+  typography: {
+    fontFamily: 'Proxima-Nova, sans-serif'
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '@font-face': [proxima]
+      }
+    }
+  }
+})
 
 export const styles = (theme) => ({
   root: {
-    margin: 0,
-    padding: 0,
-    display: 'flex',
-    fontFamily: 'Inconsolata, Helvetica'
+    fontFamily: 'Proxima, Helvetica'
   },
   navbar: {
     backgroundColor: '#ddd'
+  },
+  articleCardGrid: {
+    marginBottom: '2rem'
   },
   articleCardRoot: {
     maxWidth: 345,
@@ -26,11 +67,8 @@ export const styles = (theme) => ({
   },
   articleCard: {
     justifySelf: 'flex-start',
-    // margin: 'auto 0',
-    // textAlign: 'center',
     height: 210,
     alignItems: 'stretch'
-    // transform: translateX(0, 50%),
   },
   articleCardHeader: {
     fontWeight: 'bold',
@@ -40,7 +78,6 @@ export const styles = (theme) => ({
     color: '#000',
     textAlign: 'left',
     justify: 'left',
-    // fontFamily: 'small-caps',
     fontSize: '0.6em',
     '& span': {
       color: '#000',
@@ -61,14 +98,16 @@ export const styles = (theme) => ({
     flexShrink: 0
   },
   articleAbstract: {
-    textAlign: 'justify'
+    textAlign: 'justify',
+    flex: '1 0 auto',
+    alignItems: 'stretch'
   },
   articleContent: {
     flex: '1 0 auto',
     alignItems: 'stretch'
   },
   articleCardContent: {
-    flexGrow: 1,
+    flex: '1 1 auto',
     alignItems: 'stretch'
   },
   articlePlaceholderText: {
@@ -88,5 +127,8 @@ export const styles = (theme) => ({
       marginTop: 0,
       marginBottom: 0,
     }
+  },
+  errorSnackbar: {
+    backgroundColor: red[600]
   }
 })

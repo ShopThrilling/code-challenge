@@ -1,11 +1,9 @@
 import React from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import InputBase from '@material-ui/core/InputBase'
 import { fade, makeStyles } from '@material-ui/core/styles'
-import MenuIcon from '@material-ui/icons/Menu'
 import SearchIcon from '@material-ui/icons/Search'
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +18,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block'
-    }
+    },
+    textAlign: 'left',
+    fontFamily: 'Gastromond',
+    fontStyle: 'italic',
+    fontSize: '3rem'
   },
   search: {
     position: 'relative',
@@ -50,7 +52,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create('width'),
     width: '100%',
@@ -62,7 +63,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }))
-
 
 
 const NavBar = ({ siteTitle, keyword, setKeyword }) => {
@@ -77,9 +77,6 @@ const NavBar = ({ siteTitle, keyword, setKeyword }) => {
     <div className={classes.root}>
       <AppBar position='static' style={{ backgroundColor: '#ddd' }}>
         <Toolbar>
-          <IconButton edge='start' className={classes.menuButton} color='inherit' aria-label='open drawer'>
-            <MenuIcon />
-          </IconButton>
           <Typography className={classes.title} variant='h6' noWrap>
             {siteTitle}
           </Typography>

@@ -8,13 +8,10 @@ import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
-// import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-// import {ShareIcon} from '@material-ui/icons'
-// import ExpandMoreIcon from '@material-ui/icons/ExpandMoreIcon'
-// import { Translate } from '@material-ui/icons'
 import { styles } from '../theme/styles'
+import Link from '@material-ui/core/Link'
 
 const useStyles = makeStyles(styles)
 
@@ -22,13 +19,11 @@ const ArticleCard = ({ article, spacing }) => {
   const classes = useStyles()
 
   return (
-    <Grid item xs={12} sm={6} md={4} spacing={spacing}>
-      <Card className={classes.articleCardRoot}>
+    <Grid item xs={12} sm={6} md={4} spacing={spacing} className={classes.articleCardGrid}>
+      <Card className={classes.articleCardRoot} raised variant='outlined'>
         <div className={classes.articleContent}>
           <CardHeader subheader={article.section} className={classes.articleCardHeader} />
           <CardActionArea>
-            {/* article.multimedia && <CardMedia className={classes.card} image={article.multimedia[3].url} title={article.title} /> */}
-            {/* <CardMedia className={classes.card} image={article.multimedia && article.multimedia[3].url || <Typography variant='caption' style={{ fontStyle: 'italic' }}>{article.title}</Typography> } title={article.title} /> */}
             {article.multimedia ? (
               <CardMedia className={classes.articleCard} image={article.multimedia[3].url} title={article.title} />
             ) : (
@@ -57,8 +52,7 @@ const ArticleCard = ({ article, spacing }) => {
             Share
           </Button>
           <Button size='small' color='primary'>
-            {/* <ExpandMoreIcon /> */}
-            Read More
+            <Link href={article.url} target='_blank' rel='noopener noreferrer'>Read More</Link>
           </Button>
         </CardActions>
       </Card>

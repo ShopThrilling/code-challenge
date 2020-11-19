@@ -1,7 +1,6 @@
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
-// import { ThemeOptions } from '@material-ui/core/styles/'
 import React from 'react'
 
 const Logo = () => {
