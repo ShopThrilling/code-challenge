@@ -38,6 +38,7 @@ const App = () => {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+  const [photos, setPhotos] = useState([]);
 
   const classes = useStyles();
 
@@ -48,6 +49,13 @@ const App = () => {
       .then(articleData => {
         setArticles(articleData)
         setLoading(false)
+        const photoUrls = []
+        articleData.results.forEach(data => {
+          const photoData = data.multimedia.filter(photo => photo.format === "Normal")
+          photoUrls.push(...photoData)
+        })
+        setPhotos(photoUrls)
+        console.log("Photos", photoUrls)
       })
       .catch(e => {
         setLoading(false);
@@ -62,8 +70,6 @@ const App = () => {
   if (error) {
     return <p>ERROR: {error}</p>;
   }
-
-  // const imageUrls = articles.results.mulimedia.filter(image => image.format === "Normal")
   
   return (
     <div>
@@ -74,8 +80,8 @@ const App = () => {
       <CardActionArea>
         <CardMedia
           className={classes.media}
-          // square imageUrl={article.multimedia.url}
-          image="https://static01.nyt.com/images/2020/10/27/science/00VIRUS-REGENERON-HFO1/00VIRUS-REGENERON-HFO1-articleInline-v2.jpg"
+          // square imageUrl={photos[i]}
+          image={photos[i].url}
           title="Thumbnail"
         />
         <CardContent>
