@@ -6,7 +6,11 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import SearchBar from './components/SearchBar';
+// import SearchBar from './components/SearchBar';
+import TextField from '@material-ui/core/TextField';
+import IconButton from '@material-ui/core/IconButton';
+import SearchIcon from '@material-ui/icons/Search';
+import Fuse from 'fuse.js';
 
 // //----------------------------- styles ---------------------------------//
 const useStyles = makeStyles((theme) => ({
@@ -29,21 +33,26 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 45,
     padding: 25,
   },
-  // searchBar: {
-  //   '& > *': {
-  //     margin: theme.spacing(1),
-  //     width: '25ch',
-  //   },
-  // }
+  searchForm: {
+    margin: theme.spacing(1),
+    width: "25ch",
+    display: "inline-flex",
+    paddingLeft: 45,
+},
+iconButton: {
+  marginTop: 10,
+}
 }));
 
-// //----------------------------- Card for Article ---------------------------------//
+
+//----------------------------- Card for Article ---------------------------------//
 
 const App = () => {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const [photos, setPhotos] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const classes = useStyles();
 
@@ -74,17 +83,56 @@ const App = () => {
   if (error) {
     return <p>ERROR: {error}</p>;
   }
+
+  // -------------------------------- Fuzzy Search ------------------------------ //
+  // Displays article results even if words are mispelled
+
+    const fuse = new Fuse(articles.results, {
+      keys: [
+        "section",
+        "title",
+        "byline",
+        "url",
+        "abstract",
+      ],
+      includeScore: true
+    });
   
+
+  const searchResults = fuse.search(searchQuery);
+  const articleResults = searchQuery ? searchResults.map(result => result.item) : articles.results;
+
+  console.log("health", searchResults)
+  console.log("all", articleResults)
+  // console.log("articles", articleResults)
+
+
+  // storing input text value in state on event change
+  const handleSearch = ({ currentTarget = {} }) => {
+    const { value } = currentTarget;
+    setSearchQuery(value);
+  };
+  // -------------------------------------------------------------------------------- //
   return (
     <div>
     <Typography className={classes.titleText} variant="h1" color="textPrimary">Thrilling Times</Typography>
     <div>
-    <SearchBar/>
+    <form className={classes.searchForm} noValidate autoComplete="off">
+      <TextField 
+      id="standard-basic" 
+      label="Search"
+      value={searchQuery}
+      onChange={handleSearch}
+      />
+      <IconButton className={classes.iconButton} onClick={() => handleSearch()}>
+        <SearchIcon /> 
+      </IconButton>
+    </form>
     </div>
     <div className={classes.cardContainer}>
-    {articles.results.map((article, i) => (
+    {articleResults.map((article, i) => (
       <Card className={classes.root} key={i}>
-      <CardActionArea href={article.url} target="_blank">
+      <CardActionArea >
         <CardMedia
           className={classes.media}
           // image={photos[i].url}
