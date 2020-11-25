@@ -14,7 +14,7 @@ const gastromond = {
   local('Gastromond-Regular'),
   url(${GastromondWoff2}) format('woff2')`,
   unicodeRange:
-    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF'
 }
 
 const proxima = {
@@ -27,7 +27,7 @@ const proxima = {
   local('Proxima-Nova'),
   url(${ProximaNovaWoff2}) format('woff2')`,
   unicodeRange:
-    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF'
 }
 
 export const theme = createMuiTheme({
@@ -37,7 +37,9 @@ export const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       '@global': {
-        '@font-face': [proxima]
+        '@font-face': [
+          proxima
+        ]
       }
     }
   }
@@ -47,11 +49,47 @@ export const styles = (theme) => ({
   root: {
     fontFamily: 'Proxima, Helvetica'
   },
+  logoContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignContent: 'center',
+    justifyContent: 'space-around',
+    padding: '2rem auto'
+  },
+  logoText: {
+    flexShrink: 1,
+    flexGrow: 1,
+    textAlign: 'center',
+    fontStyle: 'italic',
+    fontFamily: 'Gastromond',
+    paddingTop: '3rem',
+    // paddingBottom: '4rem'
+  },
+  logoSubtext: {
+    // flexShrink: 0,
+    flexGrow: 1,
+    fontFamily: 'Proxima',
+    fontStyle: 'italic',
+    alignSelf: 'center',
+    paddingBottom: '1rem'
+  },
   navbar: {
     backgroundColor: '#ddd'
   },
+  navMenu: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-evenly',
+    alignItems: 'center'
+  },
+  navItem: {
+    flex: '1 1 auto'
+  },
   articleCardGrid: {
-    marginBottom: '2rem'
+    marginBottom: '2rem',
+    textAlign: 'center',
+    justifyContent: 'center'
   },
   articleCardRoot: {
     maxWidth: 345,
@@ -87,7 +125,9 @@ export const styles = (theme) => ({
   },
   articleTitle: {
     fontStyle: 'italic',
-    fontFamily: 'serif'
+    fontFamily: 'serif',
+    color: '#000',
+    textDecoration: 'none'
   },
   articleByline: {
     fontFamily: 'serif',
@@ -125,7 +165,7 @@ export const styles = (theme) => ({
     flexShrink: 0,
     '& button': {
       marginTop: 0,
-      marginBottom: 0,
+      marginBottom: 0
     }
   },
   errorSnackbar: {

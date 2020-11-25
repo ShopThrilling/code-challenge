@@ -6,6 +6,7 @@ import NavBar from './components/NavBar'
 import ErrorSnackbar from './components/ErrorSnackbar'
 import { API_ROOT, get, params } from './api'
 import { styles } from './theme/styles'
+import Logo from './components/Logo'
 
 // Lazy load articles for faster page render time
 const ArticleGridListLazy = React.lazy(() => import('./components/ArticleGridList'))
@@ -24,6 +25,13 @@ const filterArticles = (articles, keyword) => {
       article.section.toLowerCase().includes(lowerCaseKeyword)
     )
   })
+}
+
+// TODO: trying to figure out the most elegant way to filter all articles
+// based on selected keyword from menu WITHOUT passing all articles as a prop
+const selectArticles = (articles, section) => {
+  const lowerCaseSection = section.toLowerCase()
+  return (articles.filter(article => article.section.toLowerCase().includes(lowerCaseSection)))
 }
 
 const App = () => {
@@ -88,9 +96,16 @@ const App = () => {
 
   let filteredArticles = filterArticles(articles, keyword)
 
+  let sections = articles && articles.map(article => article.section).filter((value, index, article) => article.indexOf(value) === index)
+
+  articles && console.log(sections)
+
   return (
     <div className='App'>
-      <NavBar siteTitle='Thrilling Articles' keyword={keyword} setKeyword={setKeyword} className={classes.navbar} />
+      <Logo />
+      <NavBar
+      sections={sections} setKeyword={setKeyword}
+      keyword={keyword} filterArticles={filterArticles} className={classes.navbar} />
       <Container maxWidth='lg' className={classes.root}>
         <ErrorSnackbar error={error} />
         <React.Suspense fallback={<CircularProgress style={{ margin: 'auto', left: '50%', top: '50%' }} />}>

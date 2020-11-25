@@ -20,39 +20,43 @@ const ArticleCard = ({ article, spacing }) => {
 
   return (
     <Grid item xs={12} sm={6} md={4} spacing={spacing} className={classes.articleCardGrid}>
-      <Card className={classes.articleCardRoot} raised variant='outlined'>
+      '<Card className={classes.articleCardRoot}>
         <div className={classes.articleContent}>
           <CardHeader subheader={article.section} className={classes.articleCardHeader} />
-          <CardActionArea>
-            {article.multimedia ? (
-              <CardMedia className={classes.articleCard} image={article.multimedia[3].url} title={article.title} />
-            ) : (
-              <CardMedia className={classes.articleCard} title={article.title}>
-                <Typography variant='h4' className={classes.articlePlaceholderText}>
+          <Link href={article.url} target='_blank' rel='noopener noreferrer'>
+            <CardActionArea>
+              {article.multimedia ? (
+                <CardMedia className={classes.articleCard} image={article.multimedia[3].url} title={article.title} />
+              ) : (
+                <CardMedia className={classes.articleCard} title={article.title}>
+                  <Typography variant='h4' className={classes.articlePlaceholderText}>
+                    {article.title}
+                  </Typography>
+                </CardMedia>
+              )}
+              <CardContent className={classes.articleCardContent}>
+                <Typography className={classes.articleTitle} gutterBottom variant='h5' component='h2'>
                   {article.title}
                 </Typography>
-              </CardMedia>
-            )}
-            <CardContent className={classes.articleCardContent}>
-              <Typography className={classes.articleTitle} gutterBottom variant='h5' component='h2'>
-                {article.title}
-              </Typography>
-              <Typography className={classes.articleByline} gutterBottom variant='h6' component='h4'>
-                {article.byline}
-              </Typography>
-              <Typography className={classes.articleAbstract} variant='body2' color='textSecondary' component='p'>
-                {article.abstract}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
+                <Typography className={classes.articleByline} gutterBottom variant='h6' component='h4'>
+                  {article.byline}
+                </Typography>
+                <Typography className={classes.articleAbstract} variant='body2' color='textSecondary' component='p'>
+                  {article.abstract}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Link>
         </div>
-        <Divider/>
+        <Divider />
         <CardActions className={classes.articleActions}>
           <Button size='small' color='primary'>
             Share
           </Button>
           <Button size='small' color='primary'>
-            <Link href={article.url} target='_blank' rel='noopener noreferrer'>Read More</Link>
+            <Link href={article.url} target='_blank' rel='noopener noreferrer'>
+              Read More
+            </Link>
           </Button>
         </CardActions>
       </Card>
