@@ -6,10 +6,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-// import SearchBar from './components/SearchBar';
+import SearchBar from './components/SearchBar';
 import TextField from '@material-ui/core/TextField';
-import IconButton from '@material-ui/core/IconButton';
-import SearchIcon from '@material-ui/icons/Search';
 import Fuse from 'fuse.js';
 
 // //----------------------------- styles ---------------------------------//
@@ -28,21 +26,21 @@ const useStyles = makeStyles((theme) => ({
   media: {
     height: 140,
   },
-  titleText: {
+  title: {
     textAlign: "center",
-    paddingBottom: 45,
-    padding: 25,
+    paddingBottom: 55,
+    paddingTop: 45,
     fontFamily: "Castoro, serif",
   },
   searchForm: {
     margin: theme.spacing(1),
-    width: "25ch",
-    display: "inline-flex",
-    paddingLeft: 45,
-},
-iconButton: {
-  marginTop: 10,
-}
+    display: "flex",
+    justifyContent: "center",
+    paddingBottom: 55,
+  },
+  textField: {
+    width: 350,
+  },
 }));
 
 
@@ -52,7 +50,6 @@ const App = () => {
   const [articles, setArticles] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-  const [photos, setPhotos] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
   const classes = useStyles();
@@ -64,12 +61,6 @@ const App = () => {
       .then(articleData => {
         setArticles(articleData)
         setLoading(false)
-        const photoUrls = []
-        articleData.results.forEach(data => {
-          const photoData = data.multimedia.filter(photo => photo.format === "Normal")
-          photoUrls.push(...photoData)
-        })
-        setPhotos(photoUrls)
       })
       .catch(e => {
         setLoading(false);
@@ -97,15 +88,11 @@ const App = () => {
         "abstract",
         "multimedia",
       ],
-      includeScore: true
     });
   
 
   const searchResults = fuse.search(searchQuery);
   const articleResults = searchQuery ? searchResults.map(result => result.item) : articles.results;
-
- 
-  // console.log("pics", articleResults[0].multimedia[0].url)
 
 
   // storing input text value in state on event change
@@ -116,27 +103,27 @@ const App = () => {
   // -------------------------------------------------------------------------------- //
   return (
     <div>
-    <Typography className={classes.titleText} variant="h3" color="textPrimary">Thrilling Times Magazine</Typography>
-    <div>
+    <Typography className={classes.title} variant="h3" color="textPrimary">Thrilling Times Magazine</Typography>
+    {/* <div>
     <form className={classes.searchForm} noValidate autoComplete="off">
       <TextField 
-      id="standard-basic" 
+      className={classes.textField}
       label="Search"
       value={searchQuery}
       onChange={handleSearch}
       />
-      <IconButton className={classes.iconButton} onClick={() => handleSearch()}>
-        <SearchIcon /> 
-      </IconButton>
     </form>
-    </div>
+    </div> */}
+    <SearchBar 
+    searchQuery={searchQuery}
+    handleSearch={handleSearch}
+    />
     <div className={classes.cardContainer}>
     {articleResults.map((article, i) => (
       <Card className={classes.root} key={i}>
       <CardActionArea href={article.url} target="_blank">
         <CardMedia
           className={classes.media}
-          // image={photos[i].url}
           image={article.multimedia[0].url}
           title="Thumbnail"
         />
@@ -148,7 +135,7 @@ const App = () => {
             {article.abstract}
           </Typography>
           <br />
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography variant="body2" color="textSecondary" component="p" style={{fontSize:12}}>
           {article.byline}
         </Typography>
         </CardContent>
