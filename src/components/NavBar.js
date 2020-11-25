@@ -28,6 +28,8 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
+    border: '1px solid #0e0e0e',
+    color: '#0e0e0e',
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
       backgroundColor: fade(theme.palette.common.white, 0.25)
@@ -46,7 +48,8 @@ const useStyles = makeStyles((theme) => ({
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    color: theme.palette.common.black
   },
   inputRoot: {
     color: 'inherit'
@@ -66,12 +69,13 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const NavBar = ({ sections, keyword, setKeyword, filterArticles }) => {
+const NavBar = ({ sections, keyword, setKeyword, filterArticles, setSection }) => {
   const classes = useStyles()
 
   const handleKeywordChange = (e) => {
     e.preventDefault()
     setKeyword(e.target.value)
+    setSection('')
   }
 
   return (
@@ -97,7 +101,7 @@ const NavBar = ({ sections, keyword, setKeyword, filterArticles }) => {
             />
           </div>
         </Toolbar>
-        <NavBarContent sections={sections} filterArticles={filterArticles} />
+        <NavBarContent sections={sections} setSection={setSection} />
       </AppBar>
     </div>
   )

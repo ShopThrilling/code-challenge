@@ -24,7 +24,7 @@ const ArticleCard = ({ article, spacing }) => {
         <div className={classes.articleContent}>
           <CardHeader subheader={article.section} className={classes.articleCardHeader} />
           <Link href={article.url} target='_blank' rel='noopener noreferrer'>
-            <CardActionArea>
+            <CardActionArea className={classes.articleCardActionArea}>
               {article.multimedia ? (
                 <CardMedia className={classes.articleCard} image={article.multimedia[3].url} title={article.title} />
               ) : (
@@ -51,7 +51,9 @@ const ArticleCard = ({ article, spacing }) => {
         <Divider />
         <CardActions className={classes.articleActions}>
           <Button size='small' color='primary'>
-            Share
+            <Link href={article.url} target='_blank' rel='noopener noreferrer'>
+              Share
+            </Link>
           </Button>
           <Button size='small' color='primary'>
             <Link href={article.url} target='_blank' rel='noopener noreferrer'>

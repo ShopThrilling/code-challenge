@@ -27,13 +27,6 @@ const filterArticles = (articles, keyword) => {
   })
 }
 
-// TODO: trying to figure out the most elegant way to filter all articles
-// based on selected keyword from menu WITHOUT passing all articles as a prop
-const selectArticles = (articles, section) => {
-  const lowerCaseSection = section.toLowerCase()
-  return (articles.filter(article => article.section.toLowerCase().includes(lowerCaseSection)))
-}
-
 const App = () => {
   const classes = useStyles()
 
@@ -41,6 +34,11 @@ const App = () => {
   const [
     keyword,
     setKeyword
+  ] = useState('')
+
+  const [
+    section,
+    setSection
   ] = useState('')
 
   // initialize articles state as empty array
@@ -94,9 +92,16 @@ const App = () => {
     ]
   )
 
+  // let filteredArticles = filterArticles(articles, keyword)
   let filteredArticles = filterArticles(articles, keyword)
 
-  let sections = articles && articles.map(article => article.section).filter((value, index, article) => article.indexOf(value) === index)
+  if (section) {
+    filteredArticles = articles.filter((article) => article.section.toLowerCase() === section.toLowerCase())
+  }
+
+  const sections =
+    articles &&
+    articles.map((article) => article.section).filter((value, index, article) => article.indexOf(value) === index)
 
   articles && console.log(sections)
 
@@ -104,12 +109,16 @@ const App = () => {
     <div className='App'>
       <Logo />
       <NavBar
-      sections={sections} setKeyword={setKeyword}
-      keyword={keyword} filterArticles={filterArticles} className={classes.navbar} />
+        sections={sections}
+        setKeyword={setKeyword}
+        setSection={setSection}
+        keyword={keyword}
+        className={classes.navbar}
+      />
       <Container maxWidth='lg' className={classes.root}>
         <ErrorSnackbar error={error} />
         <React.Suspense fallback={<CircularProgress style={{ margin: 'auto', left: '50%', top: '50%' }} />}>
-          <ArticleGridListLazy articles={filteredArticles} keyword={keyword} />
+          <ArticleGridListLazy articles={filteredArticles} keyword={keyword} section={`travel`} />
         </React.Suspense>
       </Container>
     </div>

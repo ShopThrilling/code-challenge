@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   }
 })
 
-const ArticleGridList = ({ articles }) => {
+const ArticleGridList = ({ articles, section }) => {
   const classes = useStyles()
 
   return (

@@ -47,7 +47,8 @@ export const theme = createMuiTheme({
 
 export const styles = (theme) => ({
   root: {
-    fontFamily: 'Proxima, Helvetica'
+    fontFamily: 'Proxima, Helvetica',
+    paddingBottom: '2rem'
   },
   logoContainer: {
     display: 'flex',
@@ -63,10 +64,8 @@ export const styles = (theme) => ({
     fontStyle: 'italic',
     fontFamily: 'Gastromond',
     paddingTop: '3rem',
-    // paddingBottom: '4rem'
   },
   logoSubtext: {
-    // flexShrink: 0,
     flexGrow: 1,
     fontFamily: 'Proxima',
     fontStyle: 'italic',
@@ -106,6 +105,7 @@ export const styles = (theme) => ({
   articleCard: {
     justifySelf: 'flex-start',
     height: 210,
+    width: '100%',
     alignItems: 'stretch'
   },
   articleCardHeader: {
@@ -144,7 +144,14 @@ export const styles = (theme) => ({
   },
   articleContent: {
     flex: '1 0 auto',
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    '& *:hover': {
+      textDecoration: 'none'
+    }
+  },
+  articleCardActionArea: {
+    flex: '1 0 auto',
+    aligntItems: 'stretch'
   },
   articleCardContent: {
     flex: '1 1 auto',

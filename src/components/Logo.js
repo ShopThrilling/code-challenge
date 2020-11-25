@@ -14,7 +14,9 @@ const Logo = () => {
           <Typography variant='h1' component='h1' className={classes.logoText}>
             Thrilling Articles
           </Typography>
-          <Typography variant='h5' component='p' className={classes.logoSubtext}>You'll never guess what happened.</Typography>
+          <Typography variant='h5' component='p' className={classes.logoSubtext}>
+            You'll never guess what happened.
+          </Typography>
         </Paper>
       </Grid>
     </Grid>
