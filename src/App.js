@@ -16,12 +16,12 @@ const filterArticles = (articles, keyword) => {
   // consider articles.results array:
   // filter along title, byline, section
   return articles.filter((article) => {
-    const lck = keyword.toLowerCase()
+    const lowerCaseKeyword = keyword.toLowerCase()
     // TODO: simplify this mess, bruh
     return (
-      article.title.toLowerCase().includes(lck) ||
-      article.byline.toLowerCase().includes(lck) ||
-      article.section.toLowerCase().includes(lck)
+      article.title.toLowerCase().includes(lowerCaseKeyword) ||
+      article.byline.toLowerCase().includes(lowerCaseKeyword) ||
+      article.section.toLowerCase().includes(lowerCaseKeyword)
     )
   })
 }
@@ -92,7 +92,7 @@ const App = () => {
     <div className='App'>
       <NavBar siteTitle='Thrilling Articles' keyword={keyword} setKeyword={setKeyword} className={classes.navbar} />
       <Container maxWidth='lg' className={classes.root}>
-      <ErrorSnackbar error={error} />
+        <ErrorSnackbar error={error} />
         <React.Suspense fallback={<CircularProgress style={{ margin: 'auto', left: '50%', top: '50%' }} />}>
           <ArticleGridListLazy articles={filteredArticles} keyword={keyword} />
         </React.Suspense>

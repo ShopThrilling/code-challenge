@@ -6,7 +6,7 @@ export const params = {
 }
 
 // NOTE: allows for additional parameters
-export const get = async(url) => {
+export const get = async(url, params=[]) => {
   url += '?'
   Object.entries(params).map(([key, val]) => (url += `&${key}=${val}`))
   return fetch(url)
