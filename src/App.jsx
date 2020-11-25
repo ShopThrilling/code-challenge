@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center",
     paddingBottom: 45,
     padding: 25,
+    fontFamily: "Castoro, serif",
   },
   searchForm: {
     margin: theme.spacing(1),
@@ -94,6 +95,7 @@ const App = () => {
         "byline",
         "url",
         "abstract",
+        "multimedia",
       ],
       includeScore: true
     });
@@ -102,9 +104,8 @@ const App = () => {
   const searchResults = fuse.search(searchQuery);
   const articleResults = searchQuery ? searchResults.map(result => result.item) : articles.results;
 
-  console.log("health", searchResults)
-  console.log("all", articleResults)
-  // console.log("articles", articleResults)
+ 
+  // console.log("pics", articleResults[0].multimedia[0].url)
 
 
   // storing input text value in state on event change
@@ -115,7 +116,7 @@ const App = () => {
   // -------------------------------------------------------------------------------- //
   return (
     <div>
-    <Typography className={classes.titleText} variant="h1" color="textPrimary">Thrilling Times</Typography>
+    <Typography className={classes.titleText} variant="h3" color="textPrimary">Thrilling Times Magazine</Typography>
     <div>
     <form className={classes.searchForm} noValidate autoComplete="off">
       <TextField 
@@ -132,10 +133,11 @@ const App = () => {
     <div className={classes.cardContainer}>
     {articleResults.map((article, i) => (
       <Card className={classes.root} key={i}>
-      <CardActionArea >
+      <CardActionArea href={article.url} target="_blank">
         <CardMedia
           className={classes.media}
           // image={photos[i].url}
+          image={article.multimedia[0].url}
           title="Thumbnail"
         />
         <CardContent>
