@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
     paddingBottom: 55,
     paddingTop: 45,
     fontFamily: "Castoro, serif",
+    color: "rgb(53,56,57)"
   },
 }));
 
@@ -76,15 +77,19 @@ const App = () => {
   const searchResults = fuse.search(searchQuery);
   const articleResults = searchQuery ? searchResults.map(result => result.item) : articles.results;
 
+  // --------------------- Page Render ----------------------- //
+
   return (
-    <div>
-    <Typography className={classes.title} variant="h3" color="textPrimary">Thrilling Times Magazine</Typography>
-    <SearchBar 
-    searchQuery={searchQuery}
-    handleSearch={handleSearch}
-    />
-    <ArticleCard articleResults={articleResults} />
-    </div>
+    <>
+      <Typography className={classes.title} cy-data="title" variant="h3" color="textPrimary">
+        Thrilling Times Magazine
+      </Typography>
+      <SearchBar 
+        searchQuery={searchQuery}
+        handleSearch={handleSearch}
+      />
+      <ArticleCard articleResults={articleResults} />
+    </>
    )
   };
 

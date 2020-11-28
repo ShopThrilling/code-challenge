@@ -24,16 +24,17 @@ const SearchBar = ({ handleSearch, searchQuery }) => {
   const classes = useStyles();
 
   return (
-    <div>
+    <>
     <form className={classes.searchForm} noValidate autoComplete="off">
       <TextField 
-      className={classes.textField}
-      label="Search"
-      value={searchQuery}
-      onChange={handleSearch}
+        className={classes.textField}
+        cy-data="searchBar"
+        label="Search"
+        value={searchQuery}
+        onChange={handleSearch}
       />
     </form>
-    </div>
+    </>
   );
 };
 

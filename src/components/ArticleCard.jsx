@@ -40,29 +40,29 @@ const ArticleCard = ({ articleResults }) => {
 
   return (
     <div className={classes.cardContainer}>
-    {articleResults.map((article, i) => (
-      <Card className={classes.root} key={i}>
-      <CardActionArea href={article.url} target="_blank">
-        <CardMedia
-          className={classes.media}
-          image={article.multimedia[0].url}
-          title="Thumbnail"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h6" component="h2">
-          {article.title}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {article.abstract}
-          </Typography>
-          <br />
-        <Typography variant="body2" color="textSecondary" component="p" style={{fontSize:12}}>
-          {article.byline}
-        </Typography>
-        </CardContent>
-      </CardActionArea>
-    </Card>
-    ))}
+      {articleResults.map((article, i) => (
+        <Card cy-data="card" className={classes.root} key={`articleCard_${i}`}>
+        <CardActionArea href={article.url} target="_blank">
+          <CardMedia
+            className={classes.media}
+            image={article.multimedia[0].url}
+            title="Thumbnail"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h6" component="h2">
+              {article.title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {article.abstract}
+            </Typography>
+            <br />
+            <Typography variant="body2" color="textSecondary" component="p" style={{fontSize:12}}>
+              {article.byline}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+      ))}
     </div>
   )
 };
