@@ -4,11 +4,13 @@
 
 Displays the most popular New York Times science articles. You can search articles by title, author, section, and abstract.
 
-## Requirements
+## To View on GitHub Pages:
 
-- **Node** _version_ 8.1+
+https://rocio-infante.github.io/code-challenge/
 
 ## Run Locally
+
+- Requirement: **Node** _version_ 8.1+
 
 ```
 npm install
