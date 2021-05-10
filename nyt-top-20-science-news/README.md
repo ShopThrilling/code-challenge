@@ -78,3 +78,6 @@ Ideally, we'd want to test most components. I was only able to write a couple in
 	- Allowed me to save time by copying the template structure.
 - [moment.js](https://momentjs.com/)
 	- Effortlessly format date & time.
+- [dotenv](https://www.npmjs.com/package/dotenv)
+	- Loads environment variables from a `.env` file into `process.env`.
+
