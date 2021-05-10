@@ -30,20 +30,27 @@ Here is the initial todo in order:
 
 ## Limitations
 - Too many requests:
-	I actually got this error at some point. Ideally, we would want some kind of cache to prevent the website from making an API request for every page (re)load.  
+
+I actually got this error at some point. Ideally, we would want some kind of cache to prevent the website from making an API request for every page (re)load.  
 - Ambiguity in number of top stories:
+
 Not sure how many stories there are in _top stories_. There were 23 in this cases but is it possible for it to be 100 or 1000? 80% of the time it's _probably_ less than 50. There are several options here:
 	- Infinite scrolling (popular for news websites)
 	- Lazy-loading 
 	- Pagination
+	
 A [good article about these options](https://www.smashingmagazine.com/2016/03/pagination-infinite-scrolling-load-more-buttons/), specifically for ecommerce.
 Ideally I would do infinite scrolling because, besides the performance benefits, it also retains people to keep browsing. With this approach, we know that there _should_ at least be enough articles to cover the full page. Which means, we won't have to load them all at once. So, whether it's 10 or 100000 won't matter since we're loading small chunks at a time.
+
 **For the sake of time, I chose to chop down the number of news to only the top 20 🔥 stories and lazily load images (pure HTML way).** 
-- Search: 
-I assumed that users would only be searching from the list of top news I provided them. So this would only search in the top 20. If we wanted to search within the full list, we can have a dedicated search page. If we want to take it further, we can even search for other related articles in NYT in general using [their dedicated search API]([https://developer.nytimes.com/docs/articlesearch-product/1/overview](https://developer.nytimes.com/docs/articlesearch-product/1/overview)).
+- Search:
+
+I assumed that users would only be searching from the list of top news I provided them. So this would only search in the top 20. If we wanted to search within the full list, we can have a dedicated search page. If we want to take it further, we can even search for other related articles in NYT in general using [their dedicated search API](https://developer.nytimes.com/docs/articlesearch-product/1/overview).
 - PropTypes `any`:
+
 I have a list of objects. The object values can be composed of null, array, and/or string. It ends up being verbose and repeated in multiple places. Ideally, the actual structure along with the types should be defined in one place and use it wherever needed. I believe a static type checker like TypeScript and Flow comes in handy here.
 - Tests:
+
 Ideally, we'd want to test most components. I was only able to write a couple in the given time. 
 
 ## Resources
