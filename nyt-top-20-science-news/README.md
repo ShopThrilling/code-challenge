@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# NYT: Top 20 Science News
+This website shows you the **20** most popular New York Times science news stories.
+## Requirements:
+This solution aims to fulfill the following requirements, in order of priority:
+- Display a list of articles.
+- Implement a search feature to dynamically filter articles.
+- Search terms should match against the following article attributes:
+    - title
+    - byline
+    - section
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Process
+Here is the initial todo in order:
+- [x] create react app
+- [x] fetch endpoint
+- [x] display basic stuff
+- [x] search/filter fetched list
+- [x] sort by latest update
+- [x] enable linter
+	- can be painful if enabled from the beginning 
+- [x] style
+	-	whip up a very simple design in figma so that I have a visual of what I want to build
+	-	find a free template that matches it
+- [x] update documentation
+- [x] test (very little)
+- [ ] some kind of pagination
+- [ ] [https://developer.nytimes.com/docs/articlesearch-product/1/overview](https://developer.nytimes.com/docs/articlesearch-product/1/overview) you can use their article search api but i’m assuming we only look through top stories
+- [ ] i wasn’t able to find how many API requests we’re allowed to have.
+- [ ] hit the api for updates and only update app when there's a difference found
 
-## Available Scripts
+## Limitations
+- Too many requests:
+	I actually got this error at some point. Ideally, we would want some kind of cache to prevent the website from making an API request for every page (re)load.  
+- Ambiguity in number of top stories:
+Not sure how many stories there are in _top stories_. There were 23 in this cases but is it possible for it to be 100 or 1000? 80% of the time it's _probably_ less than 50. There are several options here:
+	- Infinite scrolling (popular for news websites)
+	- Lazy-loading 
+	- Pagination
+A [good article about these options](https://www.smashingmagazine.com/2016/03/pagination-infinite-scrolling-load-more-buttons/), specifically for ecommerce.
+Ideally I would do infinite scrolling because, besides the performance benefits, it also retains people to keep browsing. With this approach, we know that there _should_ at least be enough articles to cover the full page. Which means, we won't have to load them all at once. So, whether it's 10 or 100000 won't matter since we're loading small chunks at a time.
+**For the sake of time, I chose to chop down the number of news to only the top 20 🔥 stories and lazily load images (pure HTML way).** 
+- Search: 
+I assumed that users would only be searching from the list of top news I provided them. So this would only search in the top 20. If we wanted to search within the full list, we can have a dedicated search page. If we want to take it further, we can even search for other related articles in NYT in general using [their dedicated search API]([https://developer.nytimes.com/docs/articlesearch-product/1/overview](https://developer.nytimes.com/docs/articlesearch-product/1/overview)).
+- PropTypes `any`:
+I have a list of objects. The object values can be composed of null, array, and/or string. It ends up being verbose and repeated in multiple places. Ideally, the actual structure along with the types should be defined in one place and use it wherever needed. I believe a static type checker like TypeScript and Flow comes in handy here.
+- Tests:
+Ideally, we'd want to test most components. I was only able to write a couple in the given time. 
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Resources
+- [NYT API](https://api.nytimes.com/svc/topstories/v2/science.json?api-key=Gwxln5M3geWlhR6UE0TY1FUWKSG3wCil)
+- [React Bootstrap](https://react-bootstrap.github.io/)
+	- Bootstrap as true React components. 
+- [Boostrap template](https://getbootstrap.com/docs/4.0/examples/album/)
+	- Allowed me to save time by copying the template structure.
+- [moment.js](https://momentjs.com/)
+	- Effortlessly format date & time.
