@@ -9,6 +9,23 @@ This solution aims to fulfill the following requirements, in order of priority:
     - byline
     - section
 
+## Getting started
+Before you start, please make sure to set up the correct environment variable. At the root of folder (nyt-top-20-sience-news), please create a `.env` file with the following content:
+
+```
+REACT_APP_NYT_API_KEY=<YOUR API KEY HERE>
+```
+You can find an API key in the parent README.md.
+
+Visit the website [here](https://kevb10.github.io/code-challenge/index.html).
+
+- `yarn install`: Installs dependencies for the project.
+- `yarn start`: Runs app in development mode.
+- `yarn test`: Runs the test watcher in an interactive mode.
+- `yarn run deploy`: Builds and deploys app to github pages.
+- `yarn lint`: Run linter. Use `--fix` to fix all fixable issues.
+
+
 ## Process
 Here is the initial todo in order:
 - [x] create react app
